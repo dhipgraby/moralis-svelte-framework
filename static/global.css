@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Quicksand";
+    src        : url("Quicksand-Medium.ttf");
+  }
+
+body {
+	min-height: 50vh;
+	margin: 0;
+    font-family: Quicksand;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #333;
+}
+
+main {	min-height: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.2;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+button h3 {
+	margin:0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.7em;
+}
+
+
+nav a {
+	color: #444444;
+	font-weight: 600;
+}
+nav a:hover {
+	color: #000000;
+	font-weight: 800;
+}
+
+
+code {
+	font-family: menlo, inconsolata, monospace;
+	font-size: calc(1em - 2px);
+	color: #555;
+	background-color: #f0f0f0;
+	padding: 0.2em 0.4em;
+	border-radius: 2px;
+}
+
+@media (min-width: 400px) {
+	body {
+		font-size: 16px;
+	}
+}
