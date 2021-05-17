@@ -1,14 +1,16 @@
 <script>
-    import { getContractBalance, fundContract } from "@contracts/methods";
+    import { addressBalance, fundContract } from "@contracts/methods";
+    import { contractAddress } from "@storage/contract";
     import { onMount } from "svelte";
-
-    let promise;
+    
+    let contractBalance;
+    
     onMount(async () => {
-        promise = getContractBalance();
+        contractBalance = addressBalance(contractAddress);
     });
 </script>
 
-{#await promise}
+{#await contractBalance}
     <h2>Loading contract balance...</h2>
 {:then balance}
     <h2>Contract balance : {balance} ETH</h2>
@@ -20,7 +22,7 @@
     <h1>Fund contract</h1>
 </button>
 
-<button class="shadow-lg" on:click={getContractBalance}>
+<button class="shadow-lg" on:click={() => { contractBalance = addressBalance(contractAddress) }}>
     <h1>Contract Balance</h1>
 </button>
 
