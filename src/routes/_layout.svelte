@@ -1,33 +1,22 @@
 <script>
-	//LIBRARIES
-	import Nav from "../components/navbars/Nav.svelte";
-	import Footer from "../components/Footer.svelte";
-	import HeaderLibs from "../components/HeaderLibs.svelte";
+	import Nav from "../components/Nav.svelte";
+
 	export let segment;
 </script>
 
-<svelte:head>
-	<HeaderLibs />
-</svelte:head>
+<Nav {segment} />
 
-
-
-
-	<body>
-		<div class="purpleOverlay">
-			<Nav {segment} />
-			<slot />
-		</div>
-	</body>
-
-<Footer />
+<main>
+	<slot />
+</main>
 
 <style>
-	div {
-		height: 100%;
-	}
-
-	body {
-		min-height: 100vh;
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
 	}
 </style>
