@@ -1,6 +1,12 @@
+@font-face {
+    font-family: "Quicksand";
+    src        : url("Quicksand-Medium.ttf");
+  }
+
+
 body {
 	margin: 0;
-	font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: Quicksand;
 	font-size: 14px;
 	line-height: 1.5;
 	color: #333;
