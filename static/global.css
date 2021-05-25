@@ -35,6 +35,43 @@ code {
 	border-radius: 2px;
 }
 
+div.shadow-lg {
+  border-radius: 10px;
+}
+
+
+/**************** my buttons *****************/
+
+.red-button {
+    background: #f24141;
+    background-image: linear-gradient(to right, #f95300, #f24141);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+  }
+
+  .purple-button {
+    background: #f24141;
+    background-image: linear-gradient(to right, #982a9e, #4d1675);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+	transition: 0.5s;
+  }
+
+  .purple-button:hover {
+
+	background-image: linear-gradient(to right,#4d1675, #4d1675);
+
+  }
+
+
+  
+
 @media (min-width: 400px) {
 	body {
 		font-size: 16px;

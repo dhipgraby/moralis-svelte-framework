@@ -1,10 +1,8 @@
 <script>
-	import { onMount } from "svelte";
-	import { Moralis } from "@moralis/MoralisSvelte";
 	import { alertTrigger } from "@storage/global";
 	import Alert from "../components/alerts/alertMsg.svelte";
-	import { getDeposits, totalDeposited,userDeposits,userGames } from "@contracts/CloudFunctions";
-	import ContractButtons from "../components/contract/ContractButtons.svelte";
+	import TableContainer from "../components/tables/TableContainer.svelte";
+ 	import ContractButtons from "../components/contract/ContractButtons.svelte";
 
 	let alertData;
 
@@ -16,12 +14,6 @@
 		};
 	});
 
-	onMount(async () => {
-		Moralis.initialize("9qYsGqSNg37j0F8T6KpFb37khgCMf050exRf90pw");
-		Moralis.serverURL = "https://ijkrgxxupwmx.moralis.io:2053/server";
-		let games = await userGames();
-		console.log(games)
-	});
 </script>
 
 <svelte:head>
@@ -41,5 +33,6 @@
 	<div class="btnDiv" align="center">
 		<br />
 		<ContractButtons />
+		<TableContainer />
 	</div>
 </div>
