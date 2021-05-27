@@ -23,7 +23,9 @@ export let games;
             <td><p>{date}</p></td>
           </tr>
         {/each}
-    
+
+        {:else}
+       <tr><td><h1>Loading...</h1></td></tr> 
     {/if}
   
     <tr />

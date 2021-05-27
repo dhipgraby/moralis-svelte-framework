@@ -1,12 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { Moralis } from "@moralis/MoralisSvelte";
-  import {
-    getDeposits,
-    totalDeposited,
-    userDeposits,
-    userGames,
-  } from "@contracts/CloudFunctions";
+  import { userGames } from "@contracts/CloudFunctions";
   import { userGamesTable } from "@helpers/tableParser";
   import UserGames from "./UserGames.svelte"
 

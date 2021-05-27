@@ -1,8 +1,15 @@
 <script>
+	import { onMount } from "svelte";
 	import { alertTrigger } from "@storage/global";
 	import Alert from "../components/alerts/alertMsg.svelte";
 	import TableContainer from "../components/tables/TableContainer.svelte";
  	import ContractButtons from "../components/contract/ContractButtons.svelte";
+	import { initEventListener } from "@contracts/events";
+	
+	
+	onMount(async () =>{
+		await initEventListener()
+	})
 
 	let alertData;
 
