@@ -1,22 +1,32 @@
 <script>
   import { onMount } from "svelte";
-  import { Moralis } from "@moralis/MoralisSvelte";
+  import { Moralis } from "@moralis/MoralisSvelte";  
   import { userGames } from "@contracts/CloudFunctions";
   import { userGamesTable } from "@helpers/tableParser";
-  import UserGames from "./UserGames.svelte"
+  import { oracleGameEvent,updateOracle } from "@storage/games"
+  import { contractInfo } from "@storage/contract";
 
   let games = [];
 
   onMount(async () =>{
-    await updateGames()
+    Moralis.initialize("QkhYAjNLWCdSS2Xd0vY3V3CzeKR1OLqlcaAbrLWN");
+    Moralis.serverURL = "https://u4zbu1bawewx.moralis.io:2053/server";
+    let allgames = await userGames()
+    console.log(allgames)
+    // await updateUserGames()
   })
 
-  async function updateGames() {
-    Moralis.initialize("9qYsGqSNg37j0F8T6KpFb37khgCMf050exRf90pw");
-    Moralis.serverURL = "https://ijkrgxxupwmx.moralis.io:2053/server";
-    let user_games = await userGames();
-    games = await userGamesTable(user_games);
-  }
-</script>
+  // async function updateUserGames(event) {
+  //   let user_games = await userGames();
+  //   games = await userGamesTable(user_games)
+  //   updateOracle(false)
+	// }
 
-<UserGames {games} />
+  // if($oracleGameEvent == true){
+  //   updateUserGames()
+  // }
+
+
+</script>
+<!-- 
+<UserGames {games} />-->

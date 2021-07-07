@@ -2,6 +2,8 @@
 
 export let games;
 
+
+
 </script>
 
 <table class="table table-responsive">

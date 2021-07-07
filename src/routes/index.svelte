@@ -6,7 +6,7 @@
 	import ContractButtons from "../components/contract/ContractButtons.svelte";
 	import { initEventListener } from "@contracts/events";
 
-	onMount(async () => {
+	onMount(async () => {		
 		await initEventListener();
 	});
 
