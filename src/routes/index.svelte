@@ -1,9 +1,14 @@
 <script>
 	import { onMount } from "svelte";
-	import { Moralis } from "@moralis/MoralisSvelte";
 	import { alertTrigger } from "@storage/global";
 	import Alert from "../components/alerts/alertMsg.svelte";
 	import TableContainer from "../components/tables/TableContainer.svelte";
+	import ContractButtons from "../components/contract/ContractButtons.svelte";
+	import { initEventListener } from "@contracts/events";
+
+	onMount(async () => {		
+		await initEventListener();
+	});
 
 	let alertData;
 
@@ -14,27 +19,30 @@
 			content: value.content,
 		};
 	});
-	
-	onMount(async () => {
-		Moralis.initialize("1DxEcin8yYJ1A3y0Eaa4LdRuJFONcFgX1Yyv6GYA");
-		Moralis.serverUrl("https://owqsgswuwr6r.moralis.io:2053/server");
-	});
-
 </script>
 
 <svelte:head>
-	<title>Dragon-masters</title>
+	<title>Moralis CoinFlip App</title>
 </svelte:head>
 
 {#if alertData.show}
-	<Alert {...alertData} />
+<Alert {...alertData} />
 {/if}
+
 
 <div class="mt-4" align="center">
 	<h1 class="c-yellow reflex">
-		Dragon Masters Contract <i class="fas fa-dragon" />
+		Ethereum Betting Dice <i class="fab fa-ethereum" />
 	</h1>
-
-	<h2>Stats</h2>
-	<TableContainer />
+	<p class="pl-5 pr-5">
+		Bet for a lucky number Higher than 51 or Lower than 49 and get 40%
+		profit from your bets
+	</p>
+	
+	<div class="btnDiv" align="center">
+		<br />
+	
+		<ContractButtons />
+		<TableContainer />
+	</div>
 </div>
