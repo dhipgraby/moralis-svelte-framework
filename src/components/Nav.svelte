@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">Navbar</a>
+		<a class="navbar-brand" href="/">Dragon Dapp</a>
 		<button
 			class="navbar-toggler"
 			type="button"
@@ -23,12 +23,12 @@
 						>Home</a
 					>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" href="/about">About</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/check">Check</a>
-				</li>
+				</li> -->
 				<!-- <li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			  Dropdown link
