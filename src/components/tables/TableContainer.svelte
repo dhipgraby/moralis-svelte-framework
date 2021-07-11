@@ -6,8 +6,8 @@
 
   onMount(async ()=>{
 
-    dragons = await bornDragons()
-    console.log(dragons)
+    // dragons = await bornDragons()
+    // console.log(dragons)
 
   })
 

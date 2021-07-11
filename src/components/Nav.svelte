@@ -1,5 +1,17 @@
 <script>
 	// export let segment;
+	import Alert from "../components/alerts/alertMsg.svelte";
+	let alertData;
+
+	const unsubscribe = alertTrigger.subscribe((value) => {
+		alertData = {
+			show: value.show,
+			alertType: value.alert,
+			content: value.content,
+		};
+	});
+
+
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,4 +59,9 @@
 			><b>Login</b></button>
 	</form>
 </nav>
+
+
+{#if alertData.show}
+	<Alert {...alertData} />
+{/if}
 
