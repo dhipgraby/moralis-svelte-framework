@@ -1,6 +1,8 @@
 <script>
 	// export let segment;
+	import { alertTrigger } from "@storage/global";
 	import Alert from "../components/alerts/alertMsg.svelte";
+	
 	let alertData;
 
 	const unsubscribe = alertTrigger.subscribe((value) => {
@@ -32,7 +34,12 @@
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="/"
-						>Home</a
+						>Homsse</a
+					>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " aria-current="page" href="/factory"
+						>Factory</a
 					>
 				</li>
 				<!-- <li class="nav-item">

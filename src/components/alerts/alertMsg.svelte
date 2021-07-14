@@ -33,6 +33,9 @@
 position:fixed;
 bottom: 10px;
 width: fit-content;
+margin-left: 5%;
+margin-right: 5%;
+max-width: 80%;
 
 }
 
