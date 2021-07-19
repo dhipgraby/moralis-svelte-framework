@@ -1,7 +1,6 @@
 <script>
     import ColorSlider from "./ColorSlider.svelte";
     import AttrSlider from "./AttrSlider.svelte";
-    import { fade } from "svelte/transition";
     var showColors = true;
 </script>
 
@@ -26,10 +25,10 @@
         </div>
     </div>
     <div class="attributeBox">
-        <div transition:fade={{ duration: 2000 }} style="{showColors ? 'display:block;' : 'display:none;'}">
+        <div style="{showColors ? 'display:block;' : 'display:none;'}">
             <ColorSlider />
         </div>
-        <div transition:fade={{ duration: 2000 }} style="{!showColors ? 'display:block;' : 'display:none;'}">
+        <div style="{!showColors ? 'display:block;' : 'display:none;'}">
             <AttrSlider />
         </div>
     </div>

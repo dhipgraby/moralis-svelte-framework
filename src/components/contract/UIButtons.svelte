@@ -36,7 +36,7 @@
 
 <style>
   .col-sm-6 {
-    margin-top: 15px;
+    padding-top: 15px;
   }
 
   .ftitle {

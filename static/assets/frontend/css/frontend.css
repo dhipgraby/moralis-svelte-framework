@@ -15,6 +15,7 @@
 }
 
 .nav-link {
+    font-weight: 600;
     padding: 17px 55px;
     margin-right: 25px;    
 }
@@ -22,10 +23,6 @@
 .nav-link b {
     color:#000000;
     transition: 0.3s ease-in;
-}
-
-.nav-link b:hover {
-    color: #ed5b0d;
 }
 
 .catGroup { 
@@ -118,6 +115,21 @@ footer {
  .animation-wrapper {
      position: fixed;
  }
+
+ 
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+	
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
 
 .particle,
 .particle:after {

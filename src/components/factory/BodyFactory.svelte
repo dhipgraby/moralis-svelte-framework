@@ -14,7 +14,7 @@
         
     </div>
     <div class="row mt-3">
-        <DragonBox />
+        <DragonBox dragonId={ "cat1" } />
 
         <Attributes />
     </div>

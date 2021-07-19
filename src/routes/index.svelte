@@ -1,15 +1,30 @@
 <script>
-	import ContractUI from "../components/contract/ContractUI.svelte";
+	import DragonLogo from "../components/dragon/DragonLogo.svelte";
 </script>
 
 <svelte:head>
 	<title>Dragon-masters</title>
 </svelte:head>
 
-<div class="mt-4" align="center">
-	<h1 class="c-yellow reflex">
-		Dragon Masters Contract <i class="fas fa-dragon" />
-	</h1>
+<div class="mainContainer body" align="center">
+	<h1><i class="fas fa-dragon" /></h1>
+	<h1 class="reflex-box">Dragon Masters NFTs</h1>
 
-	<ContractUI />
+	<div class="mt-4" align="center">
+		<DragonLogo />
+	</div>
 </div>
+
+<style>
+	.body {
+		background-color: #4f2828;
+		background-image: linear-gradient(to top right, #000000 45%, #4f2828);
+		background-repeat: no-repeat;
+		background-size: cover;
+		min-height: 100vh;
+	}
+
+	h1 {
+		color: #ffffff;
+	}
+</style>

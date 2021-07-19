@@ -1,5 +1,5 @@
 <script>
-	// export let segment;
+	export let segment;
 	import { alertTrigger } from "@storage/global";
 	import Alert from "../components/alerts/alertMsg.svelte";
 	
@@ -16,7 +16,7 @@
 
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/">Dragon Dapp</a>
 		<button
@@ -33,13 +33,23 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/"
-						>Homsse</a
+					<a class="nav-link { (segment == undefined) ? 'active': ''}" aria-current="page" href="/"
+						>Home</a
 					>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " aria-current="page" href="/factory"
+					<a class="nav-link { (segment == 'factory') ? 'active': ''}" aria-current="page" href="/factory"
 						>Factory</a
+					>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link { (segment == 'console') ? 'active': ''}" aria-current="page" href="/console"
+						>Testing UI</a
+					>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link { (segment == 'cave') ? 'active': ''}" aria-current="page" href="/cave"
+						>My Dragons <i class="fas fa-dragon"></i></a
 					>
 				</li>
 				<!-- <li class="nav-item">

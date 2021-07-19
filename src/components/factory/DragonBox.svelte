@@ -2,14 +2,17 @@
 
 import DragonDna from './DragonDna.svelte'
 
+export let dragonId
+
+
 </script>
 
-<div class="col-lg-4 m-2">
+<div id={dragonId} class="col-lg-4" align="left">
     
 <DragonDna />
-<div class="catBox light-b-shadow">
+<div  class="catBox light-b-shadow">
     
-    <div id="cat" class="cat">
+    <div id={dragonId} class="cat">
         <div class="cat__ear">
             <div id="leftEar" class="cat__ear--left">
                 <div class="cat__ear--left-inside" />
