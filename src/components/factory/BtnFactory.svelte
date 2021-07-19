@@ -1,14 +1,6 @@
 <script>
-    import { onMount } from "svelte";
-    import { Factory,defaultDragon } from "@factory/Factory";
+
     import { createDragon } from "@contracts/methods";
-
-    let FactoryClass = new Factory();
-
-    onMount(() => {
-        FactoryClass.render(defaultDragon,"#cat1");
-        FactoryClass.updateSliders(defaultDragon.dna);
-    });
 
     const create = async () => {
         let getDragonDna = FactoryClass.getDna();
