@@ -1,7 +1,10 @@
 <script>
 
     import { createDragon } from "@contracts/methods";
+    import { Factory } from "@factory/Factory";
 
+    let FactoryClass = new Factory();
+    
     const create = async () => {
         let getDragonDna = FactoryClass.getDna();
         await createDragon(getDragonDna);

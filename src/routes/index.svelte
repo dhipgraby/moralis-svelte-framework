@@ -1,5 +1,6 @@
 <script>
 	import DragonLogo from "../components/dragon/DragonLogo.svelte";
+
 </script>
 
 <svelte:head>

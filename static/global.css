@@ -1,3 +1,43 @@
+/************* MENU *****************/
+
+
+.menu {
+  cursor: pointer;
+  color: #000000;
+  background: #ffffff;
+  width: 50px;
+  height: 50px;
+  padding: 12.5px;
+  border-radius: 50px;
+  position: absolute;
+  right: 5%;
+  top: 40px;
+  transition: 0.3s;
+}
+
+    
+.menu:hover {
+  transform: scale(1.1);
+}
+
+.firstItem {
+  top: 110px;
+}
+
+.secondItem {
+  top: 180px;
+}
+
+
+div.tooltip-inner {
+  background: #ffffff;
+  box-shadow: 0px 1px 25px -9px rgba(0,0,0,0.75);
+  color:#000000;
+}
+
+.tooltip-arrow::before{
+  display: none;
+}
 
 	.mainContainer {
 		padding-top: 100px;
@@ -21,7 +61,7 @@ div.shadow-lg {
 
 .red-button {
     background: #f24141;
-    background-image: linear-gradient(to right, #f95300, #f24141);
+    background-image: linea7r-gradient(to right, #f95300, #f24141);
     color: #ffffff;
     font-weight: 700;
     padding: 10px;

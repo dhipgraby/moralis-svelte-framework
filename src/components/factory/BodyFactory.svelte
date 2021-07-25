@@ -21,7 +21,7 @@
         <span class="badge bg-warning text-dark">First dragons</span>
     </div>
     <div class="row mt-3">
-        <DragonBox dragonProps={defaultDragon} />
+        <DragonBox dragonProps={defaultDragon} menu={false} />
 
         <Attributes />
     </div>

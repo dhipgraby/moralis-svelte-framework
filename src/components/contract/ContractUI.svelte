@@ -2,6 +2,15 @@
   import { allFunctions } from "@contracts/testMethods";
   import UIButtons from "./UIButtons.svelte";
   import Console from "./Console.svelte";
+  import { contractInfo } from "@storage/contract";
+  import { onMount } from "svelte";
+
+  onMount(async()=>{
+
+    let contractData = await  contractInfo()
+    console.log(contractData.interfaces.dragon)
+
+  });
 
   let items = allFunctions;
 </script>

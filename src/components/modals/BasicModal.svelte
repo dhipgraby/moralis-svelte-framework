@@ -6,13 +6,8 @@ export let submit_name;
 export let title;
 export let content;
 export let callback;
-export let buttonName;
 
 </script>
-
-<button type="button" class="purple-button" data-bs-toggle="modal" data-bs-target="#{id}">
-  { buttonName }
-</button>
 
 <div class="modal fade" id={id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
