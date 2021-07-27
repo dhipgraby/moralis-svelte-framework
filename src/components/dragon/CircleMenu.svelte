@@ -5,6 +5,7 @@ import SellOption from "./SellOption.svelte"
 
     export let hovering;
     export let dragonId;
+    export let isApprove = false;
 
     let active = false;
 
@@ -39,13 +40,13 @@ import SellOption from "./SellOption.svelte"
 
 
         <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#mymodal" >
-            <i class="fas fa-dollar-sign" data-trigger="click" data-bs-toggle="tooltip" data-bs-placement="right" title="Sell"/>
+            <i class="fas fa-dollar-sign" data-bs-html="true"  data-trigger="click" data-bs-toggle="tooltip" data-bs-placement="right" title="<b>Sell</b>"/>
         </div>
        
     </div>
 </div>
 
-<SellOption {dragonId} />
+<SellOption {dragonId} {isApprove} />
    
 
 

@@ -1,15 +1,19 @@
 <script>
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
-	import { getAllYourDragonIds, getDetailsAllDragons } from "@contracts/methods";
+	import { getAllYourDragonIds, getDetailsAllDragons,isApprovedForAll } from "@contracts/methods";
 	import DragonBox from '../components/factory/DragonBox.svelte'
 
 	const FactoryClass = new Factory();
 	let allDragons;
+	let approveForAll;
 
 	onMount(async () => {
+
+		approveForAll = await isApprovedForAll()		
 		let dragonsIds = await getAllYourDragonIds();
 		allDragons = await getDetailsAllDragons(dragonsIds);
+		
 	});
 
 	function prepareDna(dragon, id) {
@@ -42,7 +46,7 @@
 			{#if allDragons != undefined}
 				{#each allDragons as dragon, i}
 				
-					<DragonBox dragonProps={prepareDna(dragon,i)} menu={true} />
+					<DragonBox dragonProps={prepareDna(dragon,i)} menu={true} isApprove={approveForAll} />
 
 				{/each}
 			{/if}

@@ -4,7 +4,6 @@
 export let id;
 export let submit_name;
 export let title;
-export let content;
 export let callback;
 
 </script>
@@ -18,12 +17,12 @@ export let callback;
       </div>
       <div class="modal-body">
         <slot>
-          { content}
+ 
         </slot>        
       </div>
       <div class="modal-footer">
         <button  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button on:click={ callback } class="red-button" data-bs-dismiss="modal">{ submit_name}</button>
+        <button on:click={ callback } class="btn btn-success" data-bs-dismiss="modal">{ submit_name}</button>
       </div>
     </div>
   </div>

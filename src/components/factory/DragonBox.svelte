@@ -9,6 +9,7 @@ const FactoryClass = new Factory();
 
 export let dragonProps
 export let menu;
+export let isApprove;
 
 onMount(() => {
     FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
@@ -31,7 +32,7 @@ let hovering;
 <DragonDna />
 <DragonBody />
 {#if menu}
-	<CircleMenu {hovering} dragonId={ dragonProps.id } />
+	<CircleMenu {hovering} {isApprove} dragonId={ dragonProps.id } />
 {/if}
 
 </div>
