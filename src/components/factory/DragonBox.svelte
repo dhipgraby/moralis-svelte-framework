@@ -4,6 +4,7 @@ import { Factory } from "@factory/Factory";
 import DragonDna from './DragonDna.svelte'
 import DragonBody from './DragonBody.svelte'
 import CircleMenu from "../dragon/CircleMenu.svelte";
+import { getForSaleDetails } from "@contracts/methods";
 
 const FactoryClass = new Factory();
 
@@ -11,7 +12,13 @@ export let dragonProps
 export let menu;
 export let isApprove;
 
-onMount(() => {
+onMount( async () => {
+	
+	if(isApprove){
+		let isForSale = await getForSaleDetails(dragonProps.id)
+		if(isForSale != false)  dragonProps.offer = isForSale 			
+	}
+
     FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
 })
 

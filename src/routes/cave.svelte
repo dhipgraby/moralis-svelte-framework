@@ -16,9 +16,9 @@
 		
 	});
 
-	function prepareDna(dragon, id) {
+	function prepareDna(dragon) {
 		var extractDna = {
-			id: id,
+			id: dragon.tokenId,
 			dna: FactoryClass.dnaFromGenes(dragon.genes),
 			gen: dragon.generation,
 		};
@@ -44,9 +44,9 @@
 
 		<div class="row container" id="dragonGrid">
 			{#if allDragons != undefined}
-				{#each allDragons as dragon, i}
+				{#each allDragons as dragon}
 				
-					<DragonBox dragonProps={prepareDna(dragon,i)} menu={true} isApprove={approveForAll} />
+					<DragonBox dragonProps={prepareDna(dragon)} menu={true} isApprove={approveForAll} />
 
 				{/each}
 			{/if}
