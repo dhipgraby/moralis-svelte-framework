@@ -39,7 +39,7 @@ import SellOption from "./SellOption.svelte"
         </div>
 
 
-        <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#mymodal" >
+        <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#dragonModal{dragonId}" >
             <i class="fas fa-dollar-sign" data-bs-html="true"  data-trigger="click" data-bs-toggle="tooltip" data-bs-placement="right" title="<b>Sell</b>"/>
         </div>
        

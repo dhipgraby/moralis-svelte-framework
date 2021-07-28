@@ -4,6 +4,7 @@ import { Factory } from "@factory/Factory";
 import DragonDna from './DragonDna.svelte'
 import DragonBody from './DragonBody.svelte'
 import CircleMenu from "../dragon/CircleMenu.svelte";
+import OfferInfo from "../dragon/OfferInfo.svelte";
 import { getForSaleDetails } from "@contracts/methods";
 
 const FactoryClass = new Factory();
@@ -38,6 +39,10 @@ let hovering;
     
 <DragonDna />
 <DragonBody />
+{#if dragonProps.offer}
+<OfferInfo offer={dragonProps.offer} />
+{/if}
+
 {#if menu}
 	<CircleMenu {hovering} {isApprove} dragonId={ dragonProps.id } />
 {/if}
