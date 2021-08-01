@@ -1,23 +1,25 @@
 <script>
 import { onMount } from "svelte";
 import { Factory } from "@factory/Factory";
+import { getForSaleDetails } from "@contracts/methods";
 import DragonDna from './DragonDna.svelte'
 import DragonBody from './DragonBody.svelte'
 import CircleMenu from "../dragon/CircleMenu.svelte";
 import OfferInfo from "../dragon/OfferInfo.svelte";
-import { getForSaleDetails } from "@contracts/methods";
+import BuyBtn from '../dragon/BuyBtn.svelte'
 
 const FactoryClass = new Factory();
 
-export let dragonProps
-export let menu;
-export let isApprove;
+export let dragonProps;
+export let menu = false;
+export let forSale = false;
 
 onMount( async () => {
 	
-	if(isApprove){
-		let isForSale = await getForSaleDetails(dragonProps.id)
-		if(isForSale != false)  dragonProps.offer = isForSale 			
+	if(forSale){
+		let offerDetails = await getForSaleDetails(dragonProps.id)
+		if(offerDetails != false)  dragonProps.offer = offerDetails 		
+
 	}
 
     FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
@@ -39,12 +41,18 @@ let hovering;
     
 <DragonDna />
 <DragonBody />
+
+
 {#if dragonProps.offer}
+
 <OfferInfo offer={dragonProps.offer} />
+
+<BuyBtn dragonId={ dragonProps.id} price={dragonProps.offer.priceInWei} />
+
 {/if}
 
 {#if menu}
-	<CircleMenu {hovering} {isApprove} dragonId={ dragonProps.id } />
+	<CircleMenu {hovering} {forSale} dragonId={ dragonProps.id } />
 {/if}
 
 </div>

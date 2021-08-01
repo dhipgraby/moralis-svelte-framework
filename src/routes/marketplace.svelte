@@ -1,17 +1,15 @@
 <script>
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
-	import { getAllYourDragonIds, getDetailsAllDragons,isApprovedForAll } from "@contracts/methods";
+	import { getDetailsAllDragons,getDragonsForSale } from "@contracts/methods";
 	import DragonBox from '../components/factory/DragonBox.svelte'
 
 	const FactoryClass = new Factory();
 	let allDragons;
-	let approveForAll;
 
 	onMount(async () => {
 
-		approveForAll = await isApprovedForAll()		
-		let dragonsIds = await getAllYourDragonIds();
+		let dragonsIds = await getDragonsForSale();	
 		allDragons = await getDetailsAllDragons(dragonsIds);
 		
 	});
@@ -39,14 +37,14 @@
 
 <div class="mainContainer body" align="center">
 	<div class="coverImg">
-		<h1><i class="fas fa-dungeon" /></h1>
+		<h1>	<i class="fas fa-store"></i></h1>
 		<h1>Dragon cavern</h1>
 
 		<div class="row container" id="dragonGrid">
 			{#if allDragons != undefined}
 				{#each allDragons as dragon}
 				
-					<DragonBox dragonProps={prepareDna(dragon)} menu={true} isApprove={approveForAll} />
+					<DragonBox dragonProps={prepareDna(dragon)} forSale={true} />
 
 				{/each}
 			{/if}

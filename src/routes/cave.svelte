@@ -46,7 +46,7 @@
 			{#if allDragons != undefined}
 				{#each allDragons as dragon}
 				
-					<DragonBox dragonProps={prepareDna(dragon)} menu={true} isApprove={approveForAll} />
+					<DragonBox dragonProps={prepareDna(dragon)} menu={true} forSale={approveForAll} />
 
 				{/each}
 			{/if}
