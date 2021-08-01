@@ -52,6 +52,11 @@
 						>My Dragons <i class="fas fa-dragon"></i></a
 					>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link { (segment == 'marketpalce') ? 'active': ''}" aria-current="page" href="/marketplace"
+						>Marketplace <i class="fas fa-store"></i></a
+					>
+				</li>
 				<!-- <li class="nav-item">
 					<a class="nav-link" href="/about">About</a>
 				</li>
