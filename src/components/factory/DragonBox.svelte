@@ -6,7 +6,6 @@
 	import DragonBody from "./DragonBody.svelte";
 	import CircleMenu from "../dragon/CircleMenu.svelte";
 	import OfferInfo from "../dragon/OfferInfo.svelte";
-	import BuyBtn from "../dragon/BuyBtn.svelte";
 
 	const FactoryClass = new Factory();
 
@@ -46,13 +45,7 @@
 		<DragonBody />
 
 		{#if dragonProps.offer}
-			<div class="offerContainer">
-				<OfferInfo offer={dragonProps.offer} />
-				<BuyBtn
-					dragonId={dragonProps.id}
-					price={dragonProps.offer.priceInWei}
-				/>
-			</div>
+				<OfferInfo offer={dragonProps.offer} />			
 		{/if}
 	</div>
 
