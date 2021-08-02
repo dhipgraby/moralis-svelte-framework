@@ -1,7 +1,7 @@
-<div class="row col-sm-12">
+<div class="row col-sm-12 ">
 
-    <div class="col-sm-6" id="catDNA" align="left">
-        <span class="badge bg-dark ml-2">
+    <div class="col-sm-6" align="left">
+        <span class="badge bg-light text-dark ml-2">
             
             DNA:
             <!-- Colors -->
@@ -27,7 +27,5 @@
             
             </span>
         </div>
-
-    
-
 </div>
+

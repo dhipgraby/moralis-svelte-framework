@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Dragon-masters Cavern</title>
+	<title>Marketplace</title>
 
 	<link rel="stylesheet" href="assets/frontend/css/cats.css" />
 	<link rel="stylesheet" href="assets/frontend/css/animations.css" />
@@ -37,8 +37,8 @@
 
 <div class="mainContainer body" align="center">
 	<div class="coverImg">
-		<h1>	<i class="fas fa-store"></i></h1>
-		<h1>Dragon cavern</h1>
+		<h1><i class="fas fa-store"></i></h1>
+		<h1>Marketplace</h1>
 
 		<div class="row container" id="dragonGrid">
 			{#if allDragons != undefined}

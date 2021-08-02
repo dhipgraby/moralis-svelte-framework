@@ -1,6 +1,5 @@
-<div  class="catBox light-b-shadow">
-    
-    <div class="cat">
+
+    <div class="dragonBox">
         <div class="cat__ear">
             <div id="leftEar" class="cat__ear--left">
                 <div class="cat__ear--left-inside" ></div>
@@ -47,5 +46,4 @@
         </div>
     
     </div>
-      
-</div>
+    

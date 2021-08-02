@@ -1,29 +1,42 @@
 <script>
+    import { getEth, shortAddr } from "@helpers/main";
+    import { onMount } from "svelte";
 
-import { getEth,shortAddr } from "@helpers/main";
-import { onMount } from "svelte";
+    export let offer;
+    let price = offer.priceInWei;
+    let owner = shortAddr(offer.sellerAddress);
 
-export let offer
-let price = offer.priceInWei
-let owner = shortAddr(offer.sellerAddress)
-
-
-onMount(async() => {
-    
-    price = await getEth(price);
-})
-
-
+    onMount(async () => {
+        price = await getEth(price);
+    });
 </script>
 
-<p>{ price }  <i class='fab fa-ethereum'></i></p>
+<div class="row">
+    <div class="col-lg-6 col-sm-6">
+        <small>Owner:</small>
+        <p>{owner}</p>
+    </div>
 
-<p>{ owner }</p>
+    <div class="col-lg-6 col-sm-6" align="right">
+        <small>Price:</small>
+        <p>{price} <i class="fab fa-ethereum" /></p>
+    </div>
+</div>
+
+<div>
+    <small>Attributes: </small>
+</div>
 
 <style>
 
-p {
-color:white;
-}
+    p {
+        font-weight: 600;
+        margin:0;
+        margin-bottom: 5px;
+    }
 
+    p,
+    small {
+        color: #000000;
+    }
 </style>
