@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
 	import { getDetailsAllDragons,getDragonsForSale } from "@contracts/methods";
-	import DragonBox from '../components/factory/DragonBox.svelte'
+	import DragonBox from '../components/marketplace/DragonBox.svelte'
 
 	const FactoryClass = new Factory();
 	let allDragons;
