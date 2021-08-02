@@ -12,11 +12,14 @@
 	export let dragonProps;
 	export let menu = false;
 	export let forSale = false;
+	
+	let isMarketplace = false
 
 	onMount(async () => {
 		if (forSale) {
 			let offerDetails = await getForSaleDetails(dragonProps.id);
 			if (offerDetails != false) dragonProps.offer = offerDetails;
+			isMarketplace = true
 		}
 
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
@@ -37,7 +40,7 @@
 	on:mouseenter={enter}
 	on:mouseleave={leave}
 	id={"dragon" + dragonProps.id}
-	class="col-lg-4"
+	class="col-lg-4 { (isMarketplace) ? "pointer" : "" }"
 	align="left"
 >
 	<DragonDna />
