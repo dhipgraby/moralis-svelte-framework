@@ -29,7 +29,7 @@
 <style>
 
 #alertDiv {
-
+z-index: 100;
 position:fixed;
 bottom: 10px;
 width: fit-content;

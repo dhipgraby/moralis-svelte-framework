@@ -17,7 +17,7 @@
 			let offerDetails = await getForSaleDetails(dragonProps.id);
 			if (offerDetails != false) dragonProps.offer = offerDetails;
 			if(user.toUpperCase() == offerDetails.sellerAddress.toUpperCase()){
-				dragonProps.isowner = true;
+				dragonProps.isOwner = true;
 			} 
 
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
@@ -32,7 +32,7 @@
 	align="left"
 >
 
-	<FullDragon {dragonProps} />
+	<FullDragon {dragonProps} isMarketplace={true} />
 
 </div>
 

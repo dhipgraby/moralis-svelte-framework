@@ -3,6 +3,7 @@
     import { onMount } from "svelte";
 
     export let offer;
+    export let isOwner = false;
     let price = offer.priceInWei;
     let owner = shortAddr(offer.sellerAddress);
 
@@ -13,8 +14,13 @@
 
     <div class="row">
         <div class="col-lg-6 col-sm-6">
-            <small>Owner:</small>
+            {#if isOwner}
+                 <span class="badge badge-warning">Owned</span>
+            {:else}
+                 <small>Owner:</small>
             <p>{owner}</p>
+            {/if}
+       
         </div>
 
         <div class="col-lg-6 col-sm-6" align="right">
@@ -24,8 +30,15 @@
     </div>
 
 <style>
- 
 
+    .badge-warning {
+        background-color:#ffc107;
+        color:#000000
+    }
+ 
+ .col-lg-6, .col-sm-6 {
+     align-self: center;
+ }  
     p {
         font-weight: 600;
         margin: 0;

@@ -8,17 +8,17 @@
 
 	const FactoryClass = new Factory();
 
-	export let dragonProps;
+	export let dragonProps
 	export let menu = false;
 	export let forSale = false;
 
 	onMount(async () => {
+
 		if (forSale) {
 			let offerDetails = await getForSaleDetails(dragonProps.id);
 			if (offerDetails != false) dragonProps.offer = offerDetails;
 			dragonProps.isowner = true 
 		}
-
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
 	});
 
@@ -44,7 +44,7 @@
 	<FullDragon {dragonProps} />
 
 	{#if menu}
-		<CircleMenu {hovering} {forSale} dragonId={dragonProps.id} />
+		<CircleMenu {hovering} isApprove={forSale} dragonId={dragonProps.id} />
 	{/if}
 </div>
 
