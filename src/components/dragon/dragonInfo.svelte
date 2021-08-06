@@ -5,9 +5,6 @@
     export let isMarketplace;
 </script>
 
-
-
-    {#if dragonProps.displayInfo}
         {#if dragonProps.offer}
             {#if isMarketplace}
                 <OfferInfo
@@ -30,4 +27,3 @@
                 <span class="badge bg-dark text-light">Animation 1</span>
             </div>
         {/if}
-    {/if}

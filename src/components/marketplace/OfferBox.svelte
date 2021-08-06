@@ -1,44 +1,51 @@
 <script>
+    
+    import { buyDragon } from "@contracts/methods";
+    import { displayAll } from "@storage/dragon";
 
-export let dragonProps
+    export let dragonProps;
 
 </script>
 
+<div class="col-lg-8 col-md-12 col-sm-12">
 
-    <div class="dragonInfo col-lg-8 col-md-12 col-sm-12">
-
-        <h1>Dragon info</h1>
-        <hr>
-
-        <h3>Name: <span></span></h3>
-        <h3>Level: <span></span></h3>
-        <h3>Generation: {dragonProps.generation} <span></span></h3>
-        <h3>Dna: <span>{dragonProps.genes}</span></h3>
-        <h3>Attributes: <span></span></h3>
+<button class="btn btn-light text-dark mt-2 mb-2" on:click={ ()=>{ displayAll() } }><h3>Go back</h3></button>
     
-        <hr>
-        <h2>Parents: </h2>
+    <div class="dragonInfo">
+        <h1>Dragon info</h1>
+        <hr />
+
+        <p>Name: </p>
+        <p>Level: </p>
+        <p>Attributes: </p>
+
+        <hr />
+        <h2>Parents:</h2>
         <p>Mom: {dragonProps.mumId}</p>
         <p>Dad: {dragonProps.dadId}</p>
-
+    </div>
+    
+    <div class="dragonInfo mt-2">
+        {#if dragonProps.offer}
+        <p>Current price </p>
+        <h3>{ dragonProps.offer.price } <i class="fab fa-ethereum"></i></h3>
+        {/if}
+        
+   
+        <button on:click={ () => buyDragon(dragonProps.id,dragonProps.offer.priceInWei) } class="btn btn-lg btn-primary">BUY</button>
 
     </div>
 
-
+</div>
 
 <style>
-
     h1 {
         font-size: 30px;
     }
-   
+
     h2 {
         font-size: 28px;
         font-weight: 600;
-    }
-   
-    h3 {
-        font-size: 22px;
     }
 
     .dragonInfo {
@@ -47,7 +54,12 @@ export let dragonProps
         background-color: white;
         padding: 20px;
         color: #3f3f3f;
-        margin-top: -15px;
         border-radius: 10px;
+    }
+
+    button {
+        padding-left: 60px;
+        padding-right: 60px;
+        letter-spacing: 1.5px;
     }
 </style>

@@ -1,38 +1,35 @@
 <script>
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
-	import { getDetailsAllDragons,getDragonsForSale } from "@contracts/methods";
-	import DragonBox from '../components/marketplace/DragonBox.svelte'
-	import DragonView from '../components/dragon/DragonView.svelte'
+	import { showDragon,displaySingle,displayAll } from "@storage/dragon";
+	import {
+		getDetailsAllDragons,
+		getDragonsForSale,
+	} from "@contracts/methods";
+	import DragonBox from "../components/marketplace/DragonBox.svelte";
 
 	const FactoryClass = new Factory();
 	let allDragons;
-	let dragon_view = false
+	let dragon_view;
+	let currentDragon;
 
-	onMount(async () => {
-
-		let dragonsIds = await getDragonsForSale();	
-		allDragons = await getDetailsAllDragons(dragonsIds);
-		
+	const unsubscribe = showDragon.subscribe((value) => {
+		dragon_view = value.show
 	});
 
-	
-	function selectedDragon(){
+	onMount(async () => {
+		let dragonsIds = await getDragonsForSale();
+		allDragons = await getDetailsAllDragons(dragonsIds);
+	});
+
+	function selectedDragon(event) {
+		currentDragon = event.detail.dragon;
+		currentDragon.displayOffer = true;
+		console.log(currentDragon);
 		
-		var currentDragon = allDragons[1];
-
-		singleDragon = {
-			id: currentDragon.tokenId,
-			dna: FactoryClass.dnaFromGenes(currentDragon.genes),
-			gen: currentDragon.generation,
-			displayDna:false,
-			displayInfo:false,
-			displayAttributes:false,
-		};
-
-		dragon_view = true
-		return singleDragon
-
+		displaySingle()
+		
+		return currentDragon;
 	}
 
 	function prepareDna(dragon) {
@@ -40,13 +37,18 @@
 			id: dragon.tokenId,
 			dna: FactoryClass.dnaFromGenes(dragon.genes),
 			gen: dragon.generation,
-			displayDna:true,
-			displayInfo:true,
-			displayAttributes:true,
+			displayDna: true,
+			displayInfo: true,
+			displayAttributes: true,
 		};
 
 		return extractDna;
 	}
+
+	function showCatalogue(event) {
+		displayAll()
+	}
+
 </script>
 
 <svelte:head>
@@ -61,28 +63,24 @@
 
 <div class="mainContainer body" align="center">
 	<div class="coverImg">
-		<h1><i class="fas fa-store"></i></h1>
+		<h1><i class="fas fa-store" /></h1>
 		<h1>Marketplace</h1>
 
 		<div class="row container" id="dragonGrid">
-
 			{#if dragon_view}
-		
-			<DragonView dragonProps={selectedDragon()} />
-		
-			{:else}
-
-			{#if allDragons != undefined}
+				<DragonBox
+					dragonProps={currentDragon}
+					on:showAll={showCatalogue}
+				/>
+			{:else if allDragons != undefined}
 				{#each allDragons as dragon}
-				
-					<DragonBox dragonProps={prepareDna(dragon)} forSale={true} />
-
+					<DragonBox
+						dragonProps={prepareDna(dragon)}
+						on:checkDragon={selectedDragon}
+					/>
 				{/each}
 			{/if}
-		
-		{/if}
-		
-	</div>
+		</div>
 	</div>
 </div>
 

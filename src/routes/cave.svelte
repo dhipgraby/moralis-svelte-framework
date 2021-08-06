@@ -7,7 +7,7 @@
 		isApprovedForAll,
 	} from "@contracts/methods";
 	import DragonBox from "../components/factory/DragonBox.svelte";
-	import DragonView from "../components/dragon/DragonView.svelte";
+	
 
 	const FactoryClass = new Factory();
 	let allDragons;
@@ -67,13 +67,9 @@
 		<h1><i class="fas fa-dungeon" /></h1>
 		<h1>Dragon cavern</h1>
 
-		<button on:click={() => selectedDragon()} class="btn btn-success"
-			>Click me</button
-		>
-
 		<div class="row container" id="dragonGrid">
 			{#if dragon_view}
-				<DragonView dragonProps={selectedDragon()} />
+				<DragonBox dragonProps={selectedDragon()} />
 			{:else if allDragons != undefined}
 				{#each allDragons as dragon}
 					<DragonBox
