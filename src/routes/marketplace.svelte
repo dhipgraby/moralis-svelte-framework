@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
-	import { showDragon,displaySingle,displayAll } from "@storage/dragon";
+	import { dragonObj,showDragon,displaySingle,displayAll } from "@storage/dragon";
 	import {
 		getDetailsAllDragons,
 		getDragonsForSale,
@@ -13,24 +13,18 @@
 	let dragon_view;
 	let currentDragon;
 
-	const unsubscribe = showDragon.subscribe((value) => {
+	const dragonView = showDragon.subscribe((value) => {
 		dragon_view = value.show
+	});
+
+	const selected_dragon = dragonObj.subscribe((value) => {
+		currentDragon = value
 	});
 
 	onMount(async () => {
 		let dragonsIds = await getDragonsForSale();
 		allDragons = await getDetailsAllDragons(dragonsIds);
 	});
-
-	function selectedDragon(event) {
-		currentDragon = event.detail.dragon;
-		currentDragon.displayOffer = true;
-		console.log(currentDragon);
-		
-		displaySingle()
-		
-		return currentDragon;
-	}
 
 	function prepareDna(dragon) {
 		var extractDna = {
@@ -74,10 +68,7 @@
 				/>
 			{:else if allDragons != undefined}
 				{#each allDragons as dragon}
-					<DragonBox
-						dragonProps={prepareDna(dragon)}
-						on:checkDragon={selectedDragon}
-					/>
+					<DragonBox dragonProps={prepareDna(dragon)} />
 				{/each}
 			{/if}
 		</div>
