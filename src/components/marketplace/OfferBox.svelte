@@ -1,16 +1,12 @@
 <script>
     
     import { buyDragon } from "@contracts/methods";
-    import { displayAll } from "@storage/dragon";
-
     export let dragonProps;
 
 </script>
 
 <div class="col-lg-8 col-md-12 col-sm-12">
 
-<button class="btn btn-light text-dark mt-2 mb-2" on:click={ ()=>{ displayAll() } }><h3>Go back</h3></button>
-    
     <div class="dragonInfo">
         <h1>Dragon info</h1>
         <hr />

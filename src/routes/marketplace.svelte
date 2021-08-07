@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import { Factory } from "@factory/Factory";
-	import { dragonObj,showDragon,displaySingle,displayAll } from "@storage/dragon";
+	import { marketplace_format } from "@storage/dragon";
 	import {
 		getDetailsAllDragons,
 		getDragonsForSale,
@@ -10,38 +10,11 @@
 
 	const FactoryClass = new Factory();
 	let allDragons;
-	let dragon_view;
-	let currentDragon;
-
-	const dragonView = showDragon.subscribe((value) => {
-		dragon_view = value.show
-	});
-
-	const selected_dragon = dragonObj.subscribe((value) => {
-		currentDragon = value
-	});
 
 	onMount(async () => {
 		let dragonsIds = await getDragonsForSale();
 		allDragons = await getDetailsAllDragons(dragonsIds);
 	});
-
-	function prepareDna(dragon) {
-		var extractDna = {
-			id: dragon.tokenId,
-			dna: FactoryClass.dnaFromGenes(dragon.genes),
-			gen: dragon.generation,
-			displayDna: true,
-			displayInfo: true,
-			displayAttributes: true,
-		};
-
-		return extractDna;
-	}
-
-	function showCatalogue(event) {
-		displayAll()
-	}
 
 </script>
 
@@ -61,14 +34,10 @@
 		<h1>Marketplace</h1>
 
 		<div class="row container" id="dragonGrid">
-			{#if dragon_view}
-				<DragonBox
-					dragonProps={currentDragon}
-					on:showAll={showCatalogue}
-				/>
-			{:else if allDragons != undefined}
+			
+			{#if allDragons != undefined}
 				{#each allDragons as dragon}
-					<DragonBox dragonProps={prepareDna(dragon)} />
+					<DragonBox dragonProps={marketplace_format(dragon)} />
 				{/each}
 			{/if}
 		</div>
