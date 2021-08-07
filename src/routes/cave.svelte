@@ -1,15 +1,15 @@
 <script>
 	import { onMount } from "svelte";
-	import { Factory } from "@factory/Factory";
-	import { user_format } from "@storage/dragon"
+	import { user_format } from "@storage/dragon";
 	import {
 		getAllYourDragonIds,
 		getDetailsAllDragons,
 		isApprovedForAll,
 	} from "@contracts/methods";
+	//COMPONENTS
 	import DragonBox from "../components/factory/DragonBox.svelte";
-	
-	const FactoryClass = new Factory();
+	import CssFiles from "../components/factory/CssFiles.svelte";
+	import Container from "../components/Container.svelte";
 
 	let allDragons;
 	let approveForAll;
@@ -19,48 +19,31 @@
 		let dragonsIds = await getAllYourDragonIds();
 		allDragons = await getDetailsAllDragons(dragonsIds);
 	});
-
 </script>
 
 <svelte:head>
 	<title>Dragon-masters Cavern</title>
-
-	<link rel="stylesheet" href="assets/frontend/css/cats.css" />
-	<link rel="stylesheet" href="assets/frontend/css/animations.css" />
-	<link rel="stylesheet" href="assets/frontend/css/catBox.css" />
-	<link rel="stylesheet" href="assets/frontend/css/colors.css" />
-	<link rel="stylesheet" href="assets/frontend/css/factory.css" />
+	<CssFiles />
 </svelte:head>
 
-<div class="mainContainer body" align="center">
-	<div class="coverImg">
-		<h1><i class="fas fa-dungeon" /></h1>
-		<h1>Dragon cavern</h1>
+<Container>
+	<h1><i class="fas fa-dungeon" /></h1>
+	<h1>Dragon cavern</h1>
 
-		<div class="row container" id="dragonGrid">
-		
-			{#if allDragons != undefined}
-				{#each allDragons as dragon}
-					<DragonBox
-						dragonProps={user_format(dragon)}
-						menu={true}
-						forSale={approveForAll}
-					/>
-				{/each}
-			{/if}
-		</div>
+	<div class="row container" id="dragonGrid">
+		{#if allDragons != undefined}
+			{#each allDragons as dragon}
+				<DragonBox
+					dragonProps={user_format(dragon)}
+					menu={true}
+					forSale={approveForAll}
+				/>
+			{/each}
+		{/if}
 	</div>
-</div>
+</Container>
 
 <style>
-	.body {
-		background-color: #4f2828;
-		background-image: linear-gradient(to top right, #000000 45%, #4f2828);
-		background-repeat: no-repeat;
-		background-size: cover;
-		min-height: 100vh;
-	}
-
 	h1 {
 		color: #ffffff;
 	}

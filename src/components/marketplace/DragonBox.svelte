@@ -32,7 +32,7 @@
 </script>
 
 <div
-	on:click={() => { console.log("got to assets/" + dragonProps.id)  }  }
+	on:click={() => { document.location ="assets/" + dragonProps.id  }  }
 	transition:fade
 	id={"dragon" + dragonProps.id}
 	class="col-lg-4 pointer"

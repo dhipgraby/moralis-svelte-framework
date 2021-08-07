@@ -34,9 +34,9 @@ import SellOption from "./SellOption.svelte"
     <!-- content here -->
 
     <div class={ active == true ? "d-block" : "d-hide"}>
-        <div class="menu firstItem" align="center">
-            <i class="far fa-eye" />
-        </div>
+        <a href="assets/{dragonId}"><div class="menu firstItem" align="center">
+          <i class="far fa-eye" /> 
+        </div></a> 
 
 
         <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#dragonModal{dragonId}" >
@@ -51,6 +51,10 @@ import SellOption from "./SellOption.svelte"
 
 
 <style>
+
+    a {
+        color:black;
+    }
 
     .maindiv {
         transition: 0.3s;
