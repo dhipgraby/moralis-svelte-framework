@@ -53,6 +53,11 @@
 					>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link { (segment == 'breed') ? 'active': ''}" aria-current="page" href="/breed"
+						>Breed <i class="fas fa-egg"></i></a
+					>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link { (segment == 'marketpalce') ? 'active': ''}" aria-current="page" href="/marketplace"
 						>Marketplace <i class="fas fa-store"></i></a
 					>
