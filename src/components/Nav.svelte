@@ -76,10 +76,6 @@
 			</ul>
 		</div>
 	</div>
-	<form class="container-fluid justify-content-end">
-		<button class="btn btn-outline-success me-2" type="button"
-			><b>Login</b></button>
-	</form>
 </nav>
 
 
