@@ -7,10 +7,9 @@
 <script>
 	import { onMount } from "svelte";
 	import { getDragon } from "@contracts/methods";
-	import { offer_format } from "@storage/dragon"
+	import { offer_format } from "@storage/dragon";
 	//COMPONENTS
 	import DragonBox from "../../components/marketplace/DragonBox.svelte";
-	import OfferBox from "../../components/marketplace/OfferBox.svelte";
 	import CssFiles from "../../components/factory/CssFiles.svelte";
 	import Container from "../../components/Container.svelte";
 
@@ -20,7 +19,8 @@
 
 	onMount(async () => {
 		dragonProps = await getDragon(dragonId);
-		console.log(dragonProps)
+		dragonProps.tokenId = dragonId
+		dragonProps = offer_format(dragonProps)
 	});
 </script>
 
@@ -29,16 +29,19 @@
 </svelte:head>
 
 <Container>
-	<h1>single dragon</h1>
-	{#if dragonProps}
-		<DragonBox dragonProps={offer_format(dragonProps) } />
-	{:else}
-		<h1>Not found</h1>
-	{/if}
+	<div class="row container">
+		{#if dragonProps}
+			<DragonBox  {dragonProps} />			
+		{:else}
+			<h1>Not found</h1>
+		{/if}
+	</div>
 </Container>
 
 <style>
+
 	h1 {
 		color: #ffffff;
 	}
 </style>
+

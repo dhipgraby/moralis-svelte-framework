@@ -21,25 +21,27 @@
         <p>Dad: {dragonProps.dadId}</p>
     </div>
     
-    <div class="dragonInfo mt-2">
-        {#if dragonProps.offer}
-        <p>Current price </p>
-        <h3>{ dragonProps.offer.price } <i class="fab fa-ethereum"></i></h3>
-        {/if}
-        
-   
-        <button on:click={ () => buyDragon(dragonProps.id,dragonProps.offer.priceInWei) } class="btn btn-lg btn-primary">BUY</button>
 
-    </div>
+    {#if !dragonProps.isOwner}
+        
+        <div class="dragonInfo mt-2">
+            {#if dragonProps.offer}
+            <p>Current price </p>
+            <h3>{ dragonProps.offer.price } <i class="fab fa-ethereum"></i></h3>
+            {/if}
+            
+    
+            <button on:click={ () => buyDragon(dragonProps.id,dragonProps.offer.priceInWei) } class="btn btn-lg btn-primary">BUY</button>
+
+        </div>
+    {/if}
+
 
 </div>
 
 <style>
-    h1 {
-        font-size: 30px;
-    }
 
-    h2 {
+    h1,h2 {
         font-size: 28px;
         font-weight: 600;
     }
@@ -48,6 +50,7 @@
         box-shadow: 0px 5px 7px 0px #444444;
         text-align: left;
         background-color: white;
+        margin-top: 10px;
         padding: 20px;
         color: #3f3f3f;
         border-radius: 10px;
