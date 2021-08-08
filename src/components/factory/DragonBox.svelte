@@ -34,7 +34,7 @@
 </script>
 
 <div
-	transition:fade
+	transition:fade={{ delay:500 }}
 	on:mouseenter={enter}
 	on:mouseleave={leave}
 	id={"dragon" + dragonProps.id}
@@ -46,6 +46,7 @@
 	{#if menu}
 		<CircleMenu {hovering} isApprove={forSale} dragonId={dragonProps.id} />
 	{/if}
+
 </div>
 
 <style>

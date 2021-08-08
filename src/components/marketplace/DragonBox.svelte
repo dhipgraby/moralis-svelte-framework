@@ -43,8 +43,8 @@
 </script>
 
 <div
-	on:click={ () => checkDragon()  }
-	transition:fade
+	transition:fade={{ delay:500 }}
+	on:click={ () => checkDragon()  }	
 	id={"dragon" + dragonProps.id}
 	class="col-lg-4 pointer"
 	align="left"

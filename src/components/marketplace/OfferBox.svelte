@@ -1,11 +1,13 @@
 <script>
-    
+    import { fade } from "svelte/transition";
     import { buyDragon } from "@contracts/methods";
     export let dragonProps;
 
 </script>
 
-<div class="col-lg-8 col-md-12 col-sm-12">
+<div
+    transition:fade={{ delay:500 }}
+    class="col-lg-8 col-md-12 col-sm-12">
 
     <div class="dragonInfo">
         <h1>Dragon info</h1>
