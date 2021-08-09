@@ -4,12 +4,8 @@
 
     export let offer;
     export let isOwner = false;
-    let price = offer.priceInWei;
     let owner = shortAddr(offer.sellerAddress);
 
-    onMount(async () => {
-        price = await getEth(price);
-    });
 </script>
 
     <div class="row">
@@ -25,7 +21,7 @@
 
         <div class="col-lg-6 col-sm-6" align="right">
             <small>Price:</small>
-            <p>{price} <i class="fab fa-ethereum" /></p>
+            <p>{offer.price} <i class="fab fa-ethereum" /></p>
         </div>
     </div>
 

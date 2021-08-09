@@ -1,23 +1,27 @@
 <script>
 	import { onMount } from "svelte";
+	import { getEth } from "@helpers/main";
 	import { Factory } from "@factory/Factory";
 	import { getForSaleDetails } from "@contracts/methods";
 	import { fade } from "svelte/transition";
-	import FullDragon from "../dragon/FullDragon.svelte"
+	import FullDragon from "../dragon/FullDragon.svelte";
 	import CircleMenu from "../dragon/CircleMenu.svelte";
 
 	const FactoryClass = new Factory();
 
-	export let dragonProps
+	export let dragonProps;
 	export let menu = false;
 	export let forSale = false;
 
 	onMount(async () => {
-
 		if (forSale) {
 			let offerDetails = await getForSaleDetails(dragonProps.id);
-			if (offerDetails != false) dragonProps.offer = offerDetails;
-			dragonProps.isowner = true 
+
+			dragonProps.isOwner = true;
+			if (offerDetails != false) {
+				dragonProps.offer = offerDetails;
+				dragonProps.offer.price = await getEth(offerDetails.priceInWei);
+			}
 		}
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
 	});
@@ -34,7 +38,7 @@
 </script>
 
 <div
-	transition:fade={{ delay:500 }}
+	transition:fade={{ delay: 500 }}
 	on:mouseenter={enter}
 	on:mouseleave={leave}
 	id={"dragon" + dragonProps.id}
@@ -46,14 +50,10 @@
 	{#if menu}
 		<CircleMenu {hovering} isApprove={forSale} dragonId={dragonProps.id} />
 	{/if}
-
 </div>
 
 <style>
-
 	.col-lg-4 {
 		position: relative;
 	}
-
-
 </style>

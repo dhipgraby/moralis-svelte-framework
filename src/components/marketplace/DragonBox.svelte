@@ -14,7 +14,7 @@
 	export let dragonProps;
 
 	onMount(async () => {
-		console.log(dragonProps)
+		
 		let contractData = await contractInfo();		
 		let offerDetails = await getForSaleDetails(dragonProps.id);
 		let user = contractData.account;
@@ -28,9 +28,7 @@
 			) {
 				dragonProps.isOwner = true;
 			}
-		}
-
-	
+		}	
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
 	});
 	
