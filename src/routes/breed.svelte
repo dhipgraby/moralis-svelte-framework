@@ -1,6 +1,5 @@
 <script>
     import { onMount } from "svelte";
-    import { Factory } from "@factory/Factory";
     import {
         user_format,
         dragonA,        
@@ -15,7 +14,6 @@
     import CssFiles from "../components/factory/CssFiles.svelte";
     import Container from "../components/Container.svelte";
 
-    const FactoryClass = new Factory();
     let allDragons;
     let mum_dragon;
     let dad_dragon;
@@ -27,14 +25,15 @@
         allDragons = await getDetailsAllDragons(dragonsIds);
     });
 
-    const mumDragon = dragonA.subscribe((value) => {
-        // displayDragons = false
-        mum_dragon = value;
-    });
-    
-    const dadDragon = dragonB.subscribe((value) => {
+    const dadDragon = dragonA.subscribe((value) => {
         displayDragons = false
         dad_dragon = value;
+    });
+    
+    const mumDragon = dragonB.subscribe((value) => {
+        displayDragons = false
+        mum_dragon = value;
+        
     });
 
     function showDragons(dragonGender) {
@@ -45,6 +44,11 @@
     function switchGender() {
         return;
     }
+
+    function changeDragon(event) { 
+        showDragons( event.detail.gender)   
+	}
+
 </script>
 
 <svelte:head>
@@ -52,18 +56,20 @@
     <CssFiles />
 </svelte:head>
 
-<Container>
+<Container >
     <h1 class="egg"><i class="fas fa-egg" /></h1>
     <h1>Breeding</h1>
 
     <div class="row container" id="dragonGrid">
         {#if mum_dragon.id}
             <DragonBox
+                on:changechoice={changeDragon}
                 dragonProps={mum_dragon}
                 gender={mum_dragon.gender}
+                switchBtn={true}
             />
         {:else}
-            <div class="col-sm-5 p-1">
+            <div class="col-sm-4 p-1">
                 <div
                     class="eggContainer pointer"
                     id="mum"
@@ -75,7 +81,7 @@
             </div>
         {/if}
 
-        <div class="col-sm-2 p-1">
+        <div class="col-sm-4 p-1">
             <div id="dad" on:click={() => switchGender("dad")}>
                 <h1 class="egg"><i class="fas fa-exchange-alt" /></h1>
             </div>
@@ -85,9 +91,10 @@
             <DragonBox
                 dragonProps={dad_dragon}
                 gender={dad_dragon.gender}
+                switchBtn={true}
             />
         {:else}
-            <div class="col-sm-5 p-1">
+            <div class="col-sm-4 p-1">
                 <div
                     class="eggContainer pointer"
                     id="mum"
@@ -111,7 +118,7 @@
 </Container>
 
 <style>
-    .col-sm-2 {
+    .col-sm-4 {
         align-self: center;
     }
 
