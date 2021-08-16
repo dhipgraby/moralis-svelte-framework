@@ -4,11 +4,11 @@
     import {
         getAllYourDragonIds,
         getDetailsAllDragons,
-        breed
+        breed,
     } from "@contracts/methods";
     //COMPONENTS
     import DragonBox from "./DragonBox.svelte";
-    
+    import SelectBox from "./SelectBox.svelte";
 
     let allDragons;
     let mum_dragon;
@@ -30,11 +30,16 @@
     });
 
     function switchGender() {
+        let old_dad = dad_dragon
+        dad_dragon = mum_dragon
+        mum_dragon = old_dad
+        mum_dragon.gender = "mum"
+        dad_dragon.gender = "dad"
         return;
     }
 
     function hideDragons() {
-        displayDragons = false;        
+        displayDragons = false;
     }
 
     function showDragons(dragonGender) {
@@ -49,23 +54,14 @@
             dragonProps={mum_dragon}
             gender={mum_dragon.gender}
             switchBtn={true}
-            callback={showDragons}            
+            callback={showDragons}
         />
     {:else}
-        <div class="col-sm-4 p-1">
-            <div
-                class="eggContainer pointer"
-                id="mum"
-                on:click={() => showDragons("mum")}
-            >
-                <h1 class="egg"><i class="fas fa-egg" /></h1>
-                <h3>Select a Dragon</h3>
-            </div>
-        </div>
+        <SelectBox callback={showDragons} gender={"mum"} />
     {/if}
 
     <div class="col-sm-4 pointer p-1">
-        <div id="dad" on:click={() => switchGender("dad")}>
+        <div id="dad" on:click={() => switchGender()}>
             <h1 class="egg"><i class="fas fa-exchange-alt" /></h1>
         </div>
     </div>
@@ -76,19 +72,9 @@
             gender={dad_dragon.gender}
             switchBtn={true}
             callback={showDragons}
-            
         />
     {:else}
-        <div class="col-sm-4 p-1">
-            <div
-                class="eggContainer pointer"
-                id="mum"
-                on:click={() => showDragons("dad")}
-            >
-                <h1 class="egg"><i class="fas fa-egg" /></h1>
-                <h3>Select a Dragon</h3>
-            </div>
-        </div>
+        <SelectBox callback={showDragons} gender={"dad"} />
     {/if}
 </div>
 <div class="col-sm-12">
@@ -96,7 +82,7 @@
         <button
             class="btn btn-warning text-dark"
             on:click={() => {
-              breed(mum_dragon.id,dad_dragon.id)
+                breed(mum_dragon.id, dad_dragon.id);
             }}
             >breed
         </button>
@@ -108,44 +94,33 @@
         <h1 class="mt-5">Choose {gender}</h1>
         {#if allDragons != undefined}
             {#each allDragons as dragon}
-                <DragonBox dragonProps={user_format(dragon)} {gender} hide={hideDragons} />
+                <DragonBox
+                    dragonProps={user_format(dragon)}
+                    {gender}
+                    hide={hideDragons}
+                />
             {/each}
         {/if}
     {/if}
 </div>
 
 <style>
-
-     button {
+    button {
         border-radius: 50px;
         padding-left: 100px;
         padding-right: 100px;
         font-weight: 600;
         letter-spacing: 1.5px;
         font-size: 28px;
-        transition:0.4s;
+        transition: 0.4s;
+    }
 
-     }
-
-     button:hover {
-         transform:scale(1.06);
-     }
-
+    button:hover {
+        transform: scale(1.06);
+    }
 
     .col-sm-4 {
         align-self: center;
-    }
-
-    .eggContainer {
-        border-radius: 10px;
-        background: #ffffff;
-        padding: 70px;
-        vertical-align: middle;
-        box-shadow: 0px 5px 7px 0px #444444;
-    }
-
-    .eggContainer h1 {
-        color: #444444;        
     }
 
     h1 {
