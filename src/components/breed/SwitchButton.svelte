@@ -1,24 +1,12 @@
 <script>
-    import { onMount } from "svelte";
-    import { createEventDispatcher } from 'svelte';
-
-    export  let dragon_gender 
-    
-    const dispatch = createEventDispatcher();
-
-function changeChoice() {
-    dispatch('changechoice', {
-        gender: dragon_gender
-    });
-}
-
+    export let gender
+    export let callback
 </script>
 
 <div class="maindiv">
-    <div on:click={() => changeChoice() } class="menu" align="center">
+    <div on:click={() => callback(gender) } class="menu" align="center">
         <i class="fas fa-retweet" />
-    </div>
-    <!-- content here -->
+    </div> 
 </div>
 
 <style>
