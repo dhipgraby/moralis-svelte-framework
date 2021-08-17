@@ -6,6 +6,7 @@
         getDetailsAllDragons,
         breed,
     } from "@contracts/methods";
+    import { initEventListener } from "@contracts/events";
     //COMPONENTS
     import DragonBox from "./DragonBox.svelte";
     import SelectBox from "./SelectBox.svelte";
@@ -19,6 +20,7 @@
     onMount(async () => {
         let dragonsIds = await getAllYourDragonIds();
         allDragons = await getDetailsAllDragons(dragonsIds);
+        await initEventListener();
     });
 
     const dadDragon = dragonA.subscribe((value) => {
