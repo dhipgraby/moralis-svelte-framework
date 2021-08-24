@@ -6,22 +6,35 @@
         getDetailsAllDragons,
         breed,
     } from "@contracts/methods";
-    import { initEventListener } from "@contracts/events";
+    import { contractInfo } from "@storage/contract";
     //COMPONENTS
     import BreedBtn from "./BreedBtn.svelte";
     import DragonSelection from "./DragonSelection.svelte";
     import UserDragons from "./UserDragons.svelte";
+    import BirthBox from "./birthBox.svelte";
 
     let allDragons;
     let mum_dragon;
     let dad_dragon;
-    let displayDragons = false;
+    let birthData;
     let gender;
+    let displayDragons = false;    
+    let breedEvent = false;
+    
 
     onMount(async () => {
+        let contractData = await contractInfo();
         let dragonsIds = await getAllYourDragonIds();
         allDragons = await getDetailsAllDragons(dragonsIds);
-        await initEventListener();
+        await contractData.interfaces.dragon.events
+            .Birth()
+            .once("data", (event) => {
+                console.log(event);
+                birthData = event.returnValues;
+                birthData.tokenId = birthData.babyDragonId
+                breedEvent = true;
+            })
+            .on("error", console.error);
     });
 
     const dadDragon = dragonA.subscribe((value) => {
@@ -49,16 +62,20 @@
         displayDragons = true;
         gender = dragonGender;
     }
+    
 </script>
 
-<DragonSelection {mum_dragon} {dad_dragon} {showDragons} {switchGender} />
+{#if breedEvent}
+    <BirthBox {birthData} {user_format} />
+{:else}
+    <DragonSelection {mum_dragon} {dad_dragon} {showDragons} {switchGender} />
+    <BreedBtn {mum_dragon} {dad_dragon} {breed} />
 
-<BreedBtn {mum_dragon} {dad_dragon} {breed} />
-
-<UserDragons
-    {user_format}
-    {hideDragons}
-    {displayDragons}
-    {allDragons}
-    {gender}
-/>
+    <UserDragons
+        {user_format}
+        {hideDragons}
+        {displayDragons}
+        {allDragons}
+        {gender}
+    />
+{/if}

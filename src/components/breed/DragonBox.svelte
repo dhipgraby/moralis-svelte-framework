@@ -2,7 +2,6 @@
 	import { afterUpdate, onMount } from "svelte";
 	import { update_current_dragon } from "@storage/dragon";
 	import { Factory } from "@factory/Factory";
-	import { fade } from "svelte/transition";
 	import FullDragon from "../dragon/FullDragon.svelte";
 	import SwitchButton from "./SwitchButton.svelte";
 
@@ -12,11 +11,19 @@
 	export let gender;
 	export let switchBtn = false;
 	export let callback = null;
+	export let goTo = null;
 	export let hide = null;
 
 	function chooseDragon(){
-		update_current_dragon(dragonProps, gender)
-		if(hide != null) hide()
+		if(hide != null){
+			hide()
+			update_current_dragon(dragonProps, gender)
+		} 
+
+		if(goTo != null){
+			document.location ="assets/" + dragonProps.id  	
+		}
+		return;
 	}
 
 	afterUpdate(async () => {
@@ -29,8 +36,7 @@
 
 </script>
 
-<div
-	transition:fade={{ delay: 500 }}
+<div	
 	on:click={() => chooseDragon() }
 	id={"dragon" + dragonProps.id}
 	class="col-lg-4 pointer"
