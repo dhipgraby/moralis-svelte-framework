@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { Factory, defaultDragon } from "@factory/Factory";
+    import { factory_format } from "@storage/dragon";
 
     import DragonBox from "./DragonBox.svelte";
     import Attributes from "./Attributes.svelte";
@@ -10,6 +11,7 @@
     let FactoryClass = new Factory();
 
     onMount(() => {       
+        console.log(defaultDragon)
         FactoryClass.updateSliders(defaultDragon.dna);
     });
 </script>
@@ -21,7 +23,7 @@
         <span class="badge bg-warning text-dark">First dragons</span>
     </div>
     <div class="row mt-3">
-        <DragonBox dragonProps={defaultDragon} menu={false} />
+        <DragonBox dragonProps={factory_format(defaultDragon)} menu={false} />
 
         <Attributes />
     </div>

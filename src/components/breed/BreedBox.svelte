@@ -29,7 +29,6 @@
         await contractData.interfaces.dragon.events
             .Birth()
             .once("data", (event) => {
-                console.log(event);
                 birthData = event.returnValues;
                 birthData.tokenId = birthData.babyDragonId
                 breedEvent = true;
