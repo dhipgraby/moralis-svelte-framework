@@ -14,7 +14,6 @@
 	export let dragonProps;
 
 	onMount(async () => {
-		
 		let contractData = await contractInfo();		
 		let offerDetails = await getForSaleDetails(dragonProps.id);
 		let user = contractData.account;

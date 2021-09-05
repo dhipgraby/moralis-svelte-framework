@@ -16,8 +16,8 @@
 	onMount(async () => {
 		if (forSale) {
 			let offerDetails = await getForSaleDetails(dragonProps.id);
-
-			dragonProps.isOwner = true;
+			
+			dragonProps.isOwner = true;	
 			if (offerDetails != false) {
 				dragonProps.offer = offerDetails;
 				dragonProps.offer.price = await getEth(offerDetails.priceInWei);
