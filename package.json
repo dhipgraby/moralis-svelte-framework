@@ -14,7 +14,8 @@
     "express-session": "^1.17.1",
     "polka": "next",
     "sha256": "^0.2.0",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "sapper": "^0.28.0",
