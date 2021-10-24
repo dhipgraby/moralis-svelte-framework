@@ -22,7 +22,10 @@ export let callback;
       </div>
       <div class="modal-footer">
         <button  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button on:click={ callback } class="btn btn-success" data-bs-dismiss="modal">{ submit_name}</button>
+        {#if callback != false}
+          <button on:click={ callback } class="btn btn-success" data-bs-dismiss="modal">{ submit_name}</button>
+        {/if}
+      
       </div>
     </div>
   </div>

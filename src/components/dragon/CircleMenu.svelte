@@ -4,9 +4,8 @@ import SellOption from "./SellOption.svelte"
 
 
     export let hovering;
-    export let dragonId;
-    export let isApprove = false;
-
+    export let dragonProps;
+   
     let active = false;
 
     onMount(()=>{
@@ -34,19 +33,19 @@ import SellOption from "./SellOption.svelte"
     <!-- content here -->
 
     <div class={ active == true ? "d-block" : "d-hide"}>
-        <a href="assets/{dragonId}"><div class="menu firstItem" align="center">
+        <a href="assets/{dragonProps.id}"><div class="menu firstItem" align="center">
           <i class="far fa-eye" /> 
         </div></a> 
 
 
-        <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#dragonModal{dragonId}" >
+        <div class="menu secondItem" align="center"  data-bs-toggle="modal" data-bs-target="#dragonModal{dragonProps.id}" >
             <i class="fas fa-dollar-sign" data-bs-html="true"  data-trigger="click" data-bs-toggle="tooltip" data-bs-placement="right" title="<b>Sell</b>"/>
         </div>
        
     </div>
 </div>
 
-<SellOption {dragonId} {isApprove} />
+<SellOption {dragonProps} />
    
 
 

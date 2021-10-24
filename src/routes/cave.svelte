@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from "svelte";
-	import { user_format } from "@storage/dragon";
+	import { userDragons,setUserDragons,modify } from "@storage/dragon";
 	import {
 		getAllYourDragonIds,
-		getDetailsAllDragons,
-		isApprovedForAll,
+		getDetailsAllDragons,	
+		
 	} from "@contracts/methods";
 	//COMPONENTS
 	import DragonBox from "../components/factory/DragonBox.svelte";
@@ -12,13 +12,23 @@
 	import Container from "../components/Container.svelte";
 
 	let allDragons;
-	let approveForAll;
+	let test 
 
-	onMount(async () => {
-		approveForAll = await isApprovedForAll();
+	const dragonsSubscribe = userDragons.subscribe((dragons) => {
+		test = dragons;
+	});
+
+	onMount(async () => {			
 		let dragonsIds = await getAllYourDragonIds();
 		allDragons = await getDetailsAllDragons(dragonsIds);
+		console.log(allDragons)
+		setUserDragons(allDragons)
 	});
+
+	function  myFunction() {
+		modify()
+	}
+
 </script>
 
 <svelte:head>
@@ -29,14 +39,13 @@
 <Container>
 	<h1><i class="fas fa-dungeon" /></h1>
 	<h1>Dragon cavern</h1>
-
+<button class="m-5 btn btn-light text-dark" on:click={myFunction}>Click me</button>
 	<div class="row container" id="dragonGrid">
-		{#if allDragons != undefined}
-			{#each allDragons as dragon}
+		{#if test != undefined}
+			{#each test as dragon}
 				<DragonBox
-					dragonProps={user_format(dragon)}
+					dragonProps={dragon}
 					menu={true}
-					forSale={approveForAll}
 				/>
 			{/each}
 		{/if}

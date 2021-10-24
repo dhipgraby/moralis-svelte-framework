@@ -1,44 +1,66 @@
 <script>
-    import BasicModal from '../modals/BasicModal.svelte'
-    import { setForSale,setMarketplaceApproval } from "@contracts/methods";
+    import BasicModal from "../modals/BasicModal.svelte";
+    import { setForSale, setMarketplaceApproval } from "@contracts/methods";
+import { onMount } from "svelte";
 
-        export let dragonId;
-        export let isApprove
+    export let dragonProps;
+    let price = 1;
     
-        let price = 1
-        const createOffer = async () => {
-            console.log(dragonId)
-            setForSale(dragonId,price)        
+    const createOffer = async () => {
+        setForSale(dragonProps.id, price);
+    };
+
+    let modal_Sell = {
+        submit_name: "submit",
+        title: "Create marketplace offer",
+        callback: createOffer,
+    };
+
+    let modal_modify_offer = {
+        submit_name: "submit",
+        title: "Change offer",
+        callback: false,
+    };
+
+    let modal_approve = {
+        submit_name: "Approve",
+        title: "Marketplace Approval",
+        callback: setMarketplaceApproval,
+    };
+
+    let modalData;
+
+    onMount(()=>{
+  
+        if (dragonProps.isApprovedForAll == true) {
+       
+        if (dragonProps.offer) {
+            modalData = modal_modify_offer;
+        } else {
+            modalData = modal_Sell;
         }
-    
-        let modal_Sell = {
-            id:"dragonModal"+ dragonId,
-            submit_name:"submit",
-            title:"Create marketplace offer",
-            callback: createOffer
-        }
-        
-        let modal_approve = {
-            id:"dragonModal"+ dragonId,
-            submit_name:"Approve",
-            title:"Marketplace Approval",
-            callback: setMarketplaceApproval
-        }
+    } else {
+        modalData = modal_approve;
+    }
+    })
+  
+</script>
 
-        let modalData = (isApprove) ? modal_Sell : modal_approve; 
-        
+<BasicModal {...modalData} id={"dragonModal" + dragonProps.id}>
+    {#if dragonProps.isApprovedForAll}
+        {#if dragonProps.offer}
+            <h6>Change offer</h6>
+            <div class="group-btn">
+                <button class="btn btn-danger text-light">Remove Offer</button>
 
-    </script>
-
-<BasicModal {...modalData} >
-
-    {#if isApprove}
-    <h6>Create a offer in the marketplace</h6>
-    <small><b>Token Id {dragonId} </b></small>
-
-    <input class="form-control" type="text" bind:value={price}>
+                <button class="btn btn-warning text-dark">Modify Offer</button>
+            </div>
+        {:else}
+            <h6>Create a offer in the marketplace</h6>
+            <small><b>Token Id {dragonProps.id} </b></small>
+            <input class="form-control" type="text" bind:value={price} />
+        {/if}
     {:else}
-    <h6>Set marketplace Approval to sell your NFTs</h6>
-    {/if}    
-
+        <h6>Set marketplace Approval to sell your NFTs</h6>
+    {/if}
 </BasicModal>

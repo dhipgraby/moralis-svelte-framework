@@ -12,8 +12,20 @@
 
 	export let dragonProps;
 	export let menu = false;
+	let approveForAll;
+	
+	onMount(async () => {
+	//Add single approve
+		approveForAll = await isApprovedForAll();
+		if (approveForAll) {
+				dragonProps.approveForAll = true;
+				let offerDetails = await getForSaleDetails(dragonProps.id);
 
-	onMount(async () => {	
+			if (offerDetails != false) {
+				dragonProps.offer = offerDetails;
+				dragonProps.offer.price = await getEth(offerDetails.priceInWei);
+			} 
+		}
 		FactoryClass.render(dragonProps, "#dragon" + dragonProps.id);
 	});
 
@@ -26,7 +38,6 @@
 	function leave() {
 		hovering = false;
 	}
-
 </script>
 
 <div

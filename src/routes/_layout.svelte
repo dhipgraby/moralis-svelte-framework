@@ -8,7 +8,6 @@
 	let lastAlerts;
 
 	const unsubscribe = alertTrigger.subscribe((alerts) => {
-		console.log(alerts);
 		lastAlerts = alerts;
 	});
 </script>
