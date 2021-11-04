@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from "svelte";
+	import { afterUpdate, onMount } from "svelte";
 	import { userDragons,setUserDragons,modify } from "@storage/dragon";
 	import {
 		getAllYourDragonIds,
@@ -12,22 +12,16 @@
 	import Container from "../components/Container.svelte";
 
 	let allDragons;
-	let test 
 
 	const dragonsSubscribe = userDragons.subscribe((dragons) => {
-		test = dragons;
+		allDragons = dragons;
 	});
 
 	onMount(async () => {			
 		let dragonsIds = await getAllYourDragonIds();
-		allDragons = await getDetailsAllDragons(dragonsIds);
-		console.log(allDragons)
-		setUserDragons(allDragons)
+		let user_dragons = await getDetailsAllDragons(dragonsIds);		
+		setUserDragons(user_dragons)
 	});
-
-	function  myFunction() {
-		modify()
-	}
 
 </script>
 
@@ -39,10 +33,10 @@
 <Container>
 	<h1><i class="fas fa-dungeon" /></h1>
 	<h1>Dragon cavern</h1>
-<button class="m-5 btn btn-light text-dark" on:click={myFunction}>Click me</button>
+
 	<div class="row container" id="dragonGrid">
-		{#if test != undefined}
-			{#each test as dragon}
+		{#if allDragons != undefined}
+			{#each allDragons as dragon}
 				<DragonBox
 					dragonProps={dragon}
 					menu={true}
