@@ -1,5 +1,5 @@
 <script>
-	import { afterUpdate, onMount } from "svelte";
+	import { onMount } from "svelte";
 	import { userDragons,setUserDragons,modify } from "@storage/dragon";
 	import {
 		getAllYourDragonIds,

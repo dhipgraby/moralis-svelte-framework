@@ -1,7 +1,7 @@
 <script>
     import BasicModal from "../modals/BasicModal.svelte";
     import { setForSale,removeDragonFromSale, setMarketplaceApproval } from "@contracts/methods";
-    import { onMount } from "svelte";
+    import { afterUpdate,onMount } from "svelte";
 
     export let dragonProps;
     let price = 1;
@@ -31,6 +31,14 @@
     let modalData;
 
     onMount(() => {
+        updateDragonData(dragonProps)
+    });
+
+    afterUpdate(()=>{
+        updateDragonData(dragonProps)
+    })    
+
+    function updateDragonData(dragonProps) {
         if (dragonProps.isApprovedForAll == true) {
             if (dragonProps.offer) {
                 modalData = modal_modify_offer;
@@ -40,7 +48,8 @@
         } else {
             modalData = modal_approve;
         }
-    });
+    }
+
 </script>
 
 <BasicModal {...modalData} id={"dragonModal" + dragonProps.id}>
