@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from "svelte";
-	import { userDragons,setUserDragons,modify } from "@storage/dragon";
+	import { userDragons,setUserDragons } from "@storage/dragon";
 	import {
 		getAllYourDragonIds,
-		getDetailsAllDragons,	
-		
+		getDetailsAllDragons,
+		getApproved,
 	} from "@contracts/methods";
 	//COMPONENTS
 	import DragonBox from "../components/factory/DragonBox.svelte";
@@ -21,6 +21,7 @@
 		let dragonsIds = await getAllYourDragonIds();
 		let user_dragons = await getDetailsAllDragons(dragonsIds);		
 		setUserDragons(user_dragons)
+		console.log(allDragons)
 	});
 
 </script>

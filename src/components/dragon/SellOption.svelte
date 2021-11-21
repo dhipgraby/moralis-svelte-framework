@@ -1,6 +1,6 @@
 <script>
     import BasicModal from "../modals/BasicModal.svelte";
-    import { setForSale,removeDragonFromSale, setMarketplaceApproval } from "@contracts/methods";
+    import { setForSale,removeDragonFromSale, setApprovalForAll,singleApproval } from "@contracts/methods";
     import { afterUpdate,onMount } from "svelte";
 
     export let dragonProps;
@@ -25,7 +25,7 @@
     let modal_approve = {
         submit_name: "Approve",
         title: "Marketplace Approval",
-        callback: setMarketplaceApproval,
+        callback: false,
     };
 
     let modalData;
@@ -34,12 +34,12 @@
         updateDragonData(dragonProps)
     });
 
-    afterUpdate(()=>{
+    afterUpdate(()=>{        
         updateDragonData(dragonProps)
     })    
 
     function updateDragonData(dragonProps) {
-        if (dragonProps.isApprovedForAll == true) {
+        if (dragonProps.isApproved == true) {
             if (dragonProps.offer) {
                 modalData = modal_modify_offer;
             } else {
@@ -53,7 +53,7 @@
 </script>
 
 <BasicModal {...modalData} id={"dragonModal" + dragonProps.id}>
-    {#if dragonProps.isApprovedForAll}
+    {#if dragonProps.isApproved}
         {#if dragonProps.offer}
             <h6>Change offer</h6>
             <div class="group-btn">
@@ -66,7 +66,28 @@
             <small><b>Token Id {dragonProps.id} </b></small>
             <input class="form-control" type="text" bind:value={price} />
         {/if}
-    {:else}
-        <h6>Set marketplace Approval to sell your NFTs</h6>
+    {:else}      
+        <div align="center">
+            <h6>Approve the marketplace to sell your NFTs</h6>
+            <p><small>Approve marketplace for only this token</small></p>
+            <button class="btn btn-danger text-light" on:click={() => singleApproval(dragonProps.id) }>Approve single token</button>
+            <br>
+            <p><small> Approve marketplace for your tokens</small></p>
+            <button class="btn btn-danger text-light" on:click={() => setApprovalForAll() }>Approve for All</button>
+        </div>
     {/if}
 </BasicModal>
+
+<style>
+
+small {
+
+    font-weight: 800;
+
+}
+
+button {
+    white-space: nowrap;
+}
+    
+</style>
